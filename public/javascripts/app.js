@@ -2,24 +2,21 @@
 
 /* App Module */
 
-var stockCompanyApp = angular.module('stockCompanyApp', [
+var app = angular.module('washinoitioshiApp', [
     'ngRoute',
-    'stockCompanyControllers'
+    'washinoitioshiControllers'
 ]);
 
-stockCompanyApp.config(['$routeProvider',
-  function ($routeProvider) {
-        $routeProvider.
-      when('/list', {
-            templateUrl: 'partials/company-list.html',
-            controller: 'CompanyListCtrl'
-        }).
-      when('/stock/:companyId', {
-            templateUrl: 'partials/company-detail.html',
-            controller: 'CompanyDetailCtrl'
-        }).
-      otherwise({
-            redirectTo: '/list'
-        });
-    }
-]);
+app.run(['$rootScope', '$http', function ($Scope, $http) {
+    $http({
+        method: 'get',
+        url: '/api/users',
+        withCredentials: true
+    })
+    .success(function (d) {
+            $Scope.users = JSON.stringify(d, null, "    ");
+    })
+    .error(function (data, status) {
+        alert('通信エラーが発生しました');
+    });
+}]);

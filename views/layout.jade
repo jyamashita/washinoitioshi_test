@@ -4,7 +4,8 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(typee='text/javascript' src='/javascripts/angular.min.js')
+    script(typee='text/javascript' src='/javascripts/angular-route.min.js')
     script(typee='text/javascript' src='/javascripts/app.js')
     script(typee='text/javascript' src='/javascripts/controllers.js')
-  body
+  body(ng-app='washinoitioshiApp')
     block content
